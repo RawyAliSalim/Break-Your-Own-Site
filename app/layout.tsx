@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -10,7 +9,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://break-your-own-site.vercel.app"),
+  metadataBase: new URL("https://rawysalim.vercel.app"),
   title: {
     default: "Rawy Ali Salim | Full-Stack & Backend Developer",
     template: "%s | Rawy Ali Salim",
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://break-your-own-site.vercel.app",
+    url: "https://rawysalim.vercel.app",
     siteName: "Rawy Ali Salim Portfolio",
     title: "Rawy Ali Salim | Full-Stack & Backend Developer",
     description:
@@ -87,20 +86,16 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
-        {/* Placeholder: Free Cloudflare Web Analytics */}
-        {/* Replace 'YOUR_CLOUDFLARE_TOKEN' with your actual Cloudflare Web Analytics beacon token */}
-        {/* 
+        {/* Cloudflare Web Analytics */}
         <Script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'
+          data-cf-beacon='{"token": "a3df856be86745228213b7637e54cbfa"}'
           strategy="afterInteractive"
         />
-        */}
       </head>
       <body className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white">
         {children}
-        <Analytics />
       </body>
     </html>
   );
