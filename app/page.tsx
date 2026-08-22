@@ -19,6 +19,8 @@ export default function Home() {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [formStatus, setFormStatus] = useState<{
     type: "idle" | "error" | "success";
     message: string;
@@ -41,7 +43,7 @@ export default function Home() {
         "Engineered scalable RESTful API endpoints and a high-performance administrative dashboard with real-time analytics, automated job processing, and robust role-based access control.",
       tags: ["Node.js", "Express", "React", "PostgreSQL", "Tailwind CSS"],
       demoUrl: "https://example.com/demo-cloudjet",
-      repoUrl: "https://github.com/rawysalim",
+      repoUrl: "https://github.com/RawyAliSalim/cloudjet-internship",
     },
     {
       title: "BYTE Club Community Tool & Management Portal",
@@ -50,7 +52,7 @@ export default function Home() {
         "Architected an internal portal for student developers to collaborate on open-source initiatives, schedule hackathons, and track project milestones across the university community.",
       tags: ["Next.js", "TypeScript", "MERN Stack", "MongoDB", "REST APIs"],
       demoUrl: "https://example.com/demo-byte-club",
-      repoUrl: "https://github.com/rawysalim",
+      repoUrl: "https://github.com/RawyAliSalim/byte-club-portal",
     },
   ];
 
@@ -68,8 +70,9 @@ export default function Home() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
     const errors: { name?: boolean; email?: boolean; message?: boolean } = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -95,16 +98,30 @@ export default function Home() {
       return;
     }
 
-    // Success State (Fix-Now triage satisfied: no silent failure)
-    setFieldErrors({});
-    setFormStatus({
-      type: "success",
-      message:
-        "Thank you! Your message has been sent successfully. I will get back to you shortly.",
-    });
+    setIsSubmitting(true);
 
-    // Reset Form fields
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      // Simulate network request / API submission
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      // Success State
+      setFieldErrors({});
+      setFormStatus({
+        type: "success",
+        message:
+          "Thank you! Your message has been sent successfully. I will get back to you shortly.",
+      });
+
+      // Reset Form fields
+      setFormData({ name: "", email: "", message: "" });
+    } catch {
+      setFormStatus({
+        type: "error",
+        message: "An error occurred while sending your message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -146,7 +163,7 @@ export default function Home() {
             Get in Touch
           </a>
           <a
-            href="https://github.com/rawysalim"
+            href="https://github.com/RawyAliSalim"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 rounded-lg border border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-200 font-medium transition duration-200 flex items-center gap-2"
@@ -165,7 +182,7 @@ export default function Home() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/rawysalim"
+            href="https://www.linkedin.com/in/rawy-salim-2bb2b629b"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 rounded-lg border border-slate-700 hover:border-slate-500 bg-slate-900/60 hover:bg-slate-800 text-slate-200 font-medium transition duration-200 flex items-center gap-2"
@@ -419,9 +436,36 @@ export default function Home() {
             <button
               type="submit"
               id="submit-contact"
-              className="w-full py-3.5 px-6 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-600/25 transition duration-200"
+              disabled={isSubmitting}
+              className="w-full py-3.5 px-6 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:bg-blue-800/60 disabled:cursor-not-allowed text-white font-semibold shadow-lg shadow-blue-600/25 transition duration-200 flex items-center justify-center gap-2"
             >
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
             </button>
           </form>
         </div>
@@ -433,10 +477,10 @@ export default function Home() {
           &copy; {new Date().getFullYear()} Rawy Ali Salim. All rights reserved.
         </p>
 
-        {/* FlyRank Graduate Badge Placeholder */}
+        {/* FlyRank Graduate Badge */}
         <div className="flex items-center gap-2">
           <a
-            href="https://flyrank.ai/verify/rawysalim"
+            href="https://aifluency.flyrank.ai/verify/rawysalim"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-amber-500/30 bg-amber-950/20 hover:bg-amber-950/40 text-amber-300 text-xs font-semibold transition"

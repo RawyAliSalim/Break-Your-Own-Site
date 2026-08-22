@@ -10,38 +10,43 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rawysalim.dev"),
-  title: "Rawy Ali Salim | Full-Stack & Backend Developer",
+  metadataBase: new URL("https://break-your-own-site.vercel.app"),
+  title: {
+    default: "Rawy Ali Salim | Full-Stack & Backend Developer",
+    template: "%s | Rawy Ali Salim",
+  },
   description:
-    "Portfolio of Rawy Ali Salim - Full-Stack & Backend Developer specializing in Node.js, Express, SQL, MERN, and AI integrations. Head of Software Community at BYTE Club.",
+    "Full-Stack Developer specializing in high-performance backend architecture (Node.js, Express, SQL) and modern web applications with AI integrations. Head of Software Community at BYTE Club.",
   keywords: [
     "Rawy Ali Salim",
     "Full-Stack Developer",
     "Backend Developer",
-    "Node.js",
-    "Express",
-    "React",
+    "Node.js Developer",
+    "MERN Stack",
     "Next.js",
-    "SQL",
-    "MERN",
-    "BYTE Club",
+    "SQL / PostgreSQL",
+    "AI Integration",
+    "Egypt Software Engineer",
+    "Thndr",
+    "talabat",
+    "PwC",
   ],
-  authors: [{ name: "Rawy Ali Salim" }],
+  authors: [{ name: "Rawy Ali Salim", url: "https://github.com/RawyAliSalim" }],
   creator: "Rawy Ali Salim",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rawysalim.dev",
+    url: "https://break-your-own-site.vercel.app",
+    siteName: "Rawy Ali Salim Portfolio",
     title: "Rawy Ali Salim | Full-Stack & Backend Developer",
     description:
-      "Full-Stack & Backend Developer focused on scalable systems, robust APIs, AI solutions, and leading the developer community at BYTE Club.",
-    siteName: "Rawy Ali Salim Portfolio",
+      "Engineered for high performance and scale. Explore full-stack systems, backend architecture, and AI-integrated developer tooling.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Rawy Ali Salim - Full-Stack & Backend Developer",
+        alt: "Rawy Ali Salim - Full-Stack & Backend Developer Portfolio Preview",
       },
     ],
   },
@@ -49,13 +54,27 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rawy Ali Salim | Full-Stack & Backend Developer",
     description:
-      "Backend & Full-Stack Developer specializing in Node.js, Express, SQL, and MERN. Head of Software Community at BYTE Club.",
-    creator: "@rawysalim",
+      "Full-Stack Developer specializing in scalable backend systems, Node.js, Next.js, SQL, and AI integrations.",
     images: ["/og-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
